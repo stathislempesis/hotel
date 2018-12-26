@@ -1,0 +1,44 @@
+<nb-card size="xlarge">
+  <nb-card-header>
+    <div class="rooms-card-header">
+      <span class="rooms-card-title">Single rooms</span>
+      <span class="rooms-filter">
+        <a [class.active]="isSingleView" (click)="isSingleView = true">
+          <i class="nb-square"></i>
+        </a>
+        <a [class.active]="!isSingleView" (click)="isSingleView = false">
+          <i class="nb-grid-a"></i>
+        </a>
+      </span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="rooms single-view" *ngIf="isSingleView">
+      <div class="room" [style.background-image]="'url(' + selectedRoom.source + ')'">
+        <span>{{ selectedRoom.title }}</span>
+      </div>
+    </div>
+    <div class="rooms" *ngIf="!isSingleView">
+      <div class="room col-sm-6" *ngFor="let room of rooms" [style.background-image]="'url(' + room.source + ')'"
+           (click)="selectRoom(room)">
+        <span>{{ room.title }}</span>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-actions size="medium" fullWidth>
+      <nb-action>
+        <i class="nb-pause-outline"></i><span>Pause</span>
+      </nb-action>
+      <nb-action>
+        <i class="nb-list"></i><span>Logs</span>
+      </nb-action>
+      <nb-action>
+        <i class="nb-search"></i><span>Search</span>
+      </nb-action>
+      <nb-action>
+        <i class="nb-gear"></i><span>Setup</span>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
+</nb-card>
